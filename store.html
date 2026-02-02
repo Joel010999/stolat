@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STO LAT | Nuestra Bodega</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Lato:wght@300;400;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Ajuste específico para que el contenido no quede oculto por el header fijo */
+        body {
+            padding-top: 80px;
+            background-image: url('assets/images/tragos.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .store-section {
+            background-color: rgba(5, 5, 5, 0.9);
+            /* Fondo oscuro semitransparente */
+            min-height: 100vh;
+            padding: 3rem 5%;
+        }
+
+        .store-layout {
+            display: flex;
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Sidebar Styles */
+        .store-sidebar {
+            width: 250px;
+            flex-shrink: 0;
+            color: #fff;
+            padding-top: 1rem;
+        }
+
+        .sidebar-title {
+            font-family: var(--font-body);
+            font-weight: 900;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
+            text-transform: capitalize;
+        }
+
+        .sidebar-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 3rem;
+        }
+
+        .sidebar-list li {
+            margin-bottom: 0.8rem;
+        }
+
+        .sidebar-list a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.2s;
+            display: block;
+            padding: 5px 0;
+        }
+
+        .sidebar-list a:hover {
+            color: var(--color-primary);
+            padding-left: 5px;
+            /* Efecto sutil de movimiento */
+        }
+
+        .filter-group h4 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: #ddd;
+        }
+
+        .price-inputs {
+            display: flex;
+            gap: 5px;
+        }
+
+        .price-inputs input {
+            width: 80px;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #444;
+            color: #fff;
+            font-size: 0.9rem;
+            border-radius: 4px;
+        }
+
+        .filter-btn {
+            background: var(--color-primary);
+            border: none;
+            color: #fff;
+            width: 35px;
+            cursor: pointer;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .filter-btn:hover {
+            background: #4a5d4b;
+        }
+
+        /* Main Content Styles */
+        .store-main {
+            flex-grow: 1;
+        }
+
+        .main-title {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            color: #fff;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .products-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            /* Cards un poco más anchas */
+            gap: 2rem;
+        }
+
+        /* New Card Styles - Estilo La14Online adaptado */
+        .product-card-new {
+            background: #fff;
+            border-radius: 8px;
+            /* Bordes redondeados más suaves */
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card-new:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-image {
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .img-placeholder-bottle {
+            font-size: 7rem;
+            line-height: 1;
+            filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.2));
+            transition: transform 0.3s;
+        }
+
+        .product-card-new:hover .img-placeholder-bottle {
+            transform: scale(1.05);
+            /* Zoom sutil al hover */
+        }
+
+        .badge-promo {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #8FA291;
+            /* Verde oliva suave */
+            color: #fff;
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 4px;
+            z-index: 10;
+        }
+
+        .product-name {
+            font-family: 'Lato', sans-serif;
+            /* Usar fuente body para legibilidad */
+            font-size: 0.95rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            line-height: 1.4;
+            min-height: 2.8em;
+            /* Altura mínima para alineación de 2 líneas */
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-price {
+            font-family: 'Lato', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #1a1a1a;
+            margin-bottom: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+
+        .btn-add-cart {
+            background-color: #8FA291;
+            color: #fff;
+            border: none;
+            padding: 0.9rem;
+            width: 100%;
+            font-size: 0.85rem;
+            font-weight: 800;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.2s;
+            border-radius: 4px;
+        }
+
+        .btn-add-cart:hover {
+            background-color: #5c6e5e;
+            transform: scale(1.02);
+        }
+
+        /* Responsive Fix */
+        @media (max-width: 900px) {
+            .store-layout {
+                flex-direction: column;
+            }
+
+            .store-sidebar {
+                width: 100%;
+                margin-bottom: 2rem;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                gap: 2rem;
+            }
+
+            .sidebar-block {
+                flex: 1;
+                min-width: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar" style="background-color: var(--color-bg); border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/images/logo.png" alt="Sto Lat">
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">INICIO</a></li>
+            <li><a href="store.html" class="active" style="color: var(--color-primary);">STORE</a></li>
+            <li><a href="menu.html">MENU</a></li>
+            <li><a href="sucursales.html">SUCURSALES</a></li>
+        </ul>
+        <div class="menu-toggle">☰</div>
+    </nav>
+
+    <!-- Store Section -->
+    <section id="store" class="store-section">
+        <div class="store-layout">
+            <!-- Sidebar -->
+            <aside class="store-sidebar">
+                <div class="sidebar-block">
+                    <h3 class="sidebar-title">Categorías</h3>
+                    <ul class="sidebar-list">
+                        <li><a href="menu.html">MENU</a></li>
+                        <li><a href="#">VINOS</a></li>
+                        <li><a href="#">WHISKIES</a></li>
+                        <li><a href="#">ESPIRITUOSAS / DESTILADOS</a></li>
+                        <li><a href="#">ESPUMANTES</a></li>
+                        <li><a href="#">BODEGA</a></li>
+                        <li><a href="#">PROMOS / COMBOS</a></li>
+                        <li><a href="#">DELI BOX</a></li>
+                        <li><a href="#">GIFT CARD</a></li>
+                        <li><a href="#">VER MÁS</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-block">
+                    <h3 class="sidebar-title">Filtros</h3>
+                    <div class="filter-group">
+                        <h4>Precio</h4>
+                        <div class="price-inputs">
+                            <input type="text" placeholder="Desde">
+                            <input type="text" placeholder="Hasta">
+                            <button class="filter-btn">&gt;</button>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Product Grid -->
+            <div class="store-main">
+                <h2 class="main-title">NUESTRA BODEGA</h2>
+                <div class="products-container">
+                    <!-- Product 1 -->
+                    <div class="product-card-new">
+                        <div class="card-image">
+                            <div class="img-placeholder-bottle">🍷</div>
+                        </div>
+                        <h4 class="product-name">135 ANIVERSARIO GOYENECHEA</h4>
+                        <p class="product-price">$23.678</p>
+                        <button class="btn-add-cart">AGREGAR AL CARRITO</button>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="product-card-new">
+                        <div class="card-image">
+                            <div class="img-placeholder-bottle">🍸</div>
+                        </div>
+                        <h4 class="product-name">ABSENTA LA TOUR TOURNE 750 CC</h4>
+                        <p class="product-price">$29.568</p>
+                        <button class="btn-add-cart">AGREGAR AL CARRITO</button>
+                    </div>
+
+                    <!-- Licores -->
+                    <div class="product-card-new">
+                        <div class="card-image">
+                            <div class="img-placeholder-bottle">🥃</div>
+                        </div>
+                        <h4 class="product-name">FERNET BRANCA 750CC</h4>
+                        <p class="product-price">$12.500</p>
+                        <button class="btn-add-cart">AGREGAR AL CARRITO</button>
+                    </div>
+                    <div class="product-card-new">
+                        <div class="card-image">
+                            <div class="img-placeholder-bottle">🍹</div>
+                        </div>
+                        <h4 class="product-name">CAMPARI APERITIVO</h4>
+                        <p class="product-price">$9.800</p>
+                        <button class="btn-add-cart">AGREGAR AL CARRITO</button>
+                    </div>
+                    <div class="product-card-new">
+                        <div class="card-image">
+                            <div class="img-placeholder-bottle">🍸</div>
+                        </div>
+                        <h4 class="product-name">APEROL</h4>
+                        <p class="product-price">$10.200</p>
+                        <button class="btn-add-cart">AGREGAR AL CARRITO</button>
+                    </div>
+
+                    <!-- Whiskys -->
+                    <div class="product-card-new">
+                        <div class="card-image">
+                            <div class="img-placeholder-bottle">🥃</div>
+                        </div>
+                        <h4 class="product-name">JOHNNIE WALKER BLACK LABEL</h4>
+                        <p class="product-price">$45.000</p>
+                        <button class="btn-add-cart">AGREGAR AL CARRITO</button>
+                    </div>
+                    <div class="product-card-new">
+                        <div class="card-image">
+                            <div class="img-placeholder-bottle">🥃</div>
+                        </div>
+                        <h4 class="product-name">JACK DANIEL'S</h4>
+                        <p class="product-price">$52.000</p>
+                        <button class="btn-add-cart">AGREGAR AL CARRITO</button>
+                    </div>
+
+                    <!-- Cervezas -->
+                    <div class="product-card-new">
+                        <div class="card-image">
+                            <div class="img-placeholder-bottle">🍺</div>
+                        </div>
+                        <h4 class="product-name">CORONA 710CC PACK X6</h4>
+                        <p class="product-price">$21.000</p>
+                        <button class="btn-add-cart">AGREGAR AL CARRITO</button>
+                    </div>
+                    <div class="product-card-new">
+                        <div class="card-image">
+                            <div class="img-placeholder-bottle">🍺</div>
+                        </div>
+                        <h4 class="product-name">STELLA ARTOIS</h4>
+                        <p class="product-price">$3.200</p>
+                        <button class="btn-add-cart">AGREGAR AL CARRITO</button>
+                    </div>
+                    <div class="product-card-new">
+                        <div class="card-image">
+                            <div class="img-placeholder-bottle">🍺</div>
+                        </div>
+                        <h4 class="product-name">PATAGONIA AMBER LAGER</h4>
+                        <p class="product-price">$4.100</p>
+                        <button class="btn-add-cart">AGREGAR AL CARRITO</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Reused -->
+    <footer id="contacto">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-logo-section">
+                    <img src="assets/images/logo.png" alt="Sto Lat" class="footer-logo-img">
+                </div>
+                <div class="footer-nav-columns">
+                    <div class="footer-column">
+                        <h4>Nosotros</h4>
+                        <ul>
+                            <li><a href="index.html">Volver a Inicio</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-social">
+                    <a href="https://wa.me/5493884759474" target="_blank" class="social-icon whatsapp">
+                        <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/tiendastolat/" target="_blank" class="social-icon instagram">
+                        <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-copy">
+                <p>Created by RenderByte | All Right Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

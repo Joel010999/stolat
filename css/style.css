@@ -1,0 +1,424 @@
+:root {
+    --color-bg: #050505;
+    --color-primary: #2E3A2F;
+    /* Verde Oliva */
+    --color-text: #F0F0F0;
+    /* Blanco Hueso */
+    --color-accent: #3E4E3F;
+    /* Un tono mÃ¡s claro del verde */
+    --color-highlight: #D4AF37;
+    /* Dorado sutil para acentos */
+
+    --font-display: 'Anton', sans-serif;
+    --font-body: 'Lato', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: transparent;
+    /* Transparente para ver el hero */
+    transition: background 0.3s ease;
+}
+
+.navbar.scrolled {
+    background: var(--color-bg);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo img {
+    height: 50px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-links li a {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 1rem;
+    background: linear-gradient(rgba(5, 5, 5, 0.6), rgba(5, 5, 5, 0.6)), url('../assets/images/vinoteca.jpg') no-repeat center center/cover;
+    position: relative;
+}
+
+.hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 10vw, 8rem);
+    line-height: 0.9;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    letter-spacing: 2px;
+}
+
+.d-block {
+    display: block;
+}
+
+.text-outline {
+    -webkit-text-stroke: 2px var(--color-text);
+    color: transparent;
+    transition: color 0.3s;
+}
+
+.text-outline:hover {
+    color: var(--color-text);
+}
+
+.btn-hero {
+    display: inline-block;
+    padding: 1rem 3rem;
+    background-color: var(--color-text);
+    color: var(--color-bg);
+    font-weight: 900;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    letter-spacing: 1px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-hero:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Marquee */
+.marquee-container {
+    background-color: var(--color-primary);
+    color: var(--color-text);
+    padding: 1.5rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    border-top: 1px solid var(--color-text);
+    border-bottom: 1px solid var(--color-text);
+}
+
+.marquee-container.bg-dark {
+    background-color: var(--color-bg);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.marquee-content {
+    display: inline-block;
+    animation: marquee 20s linear infinite;
+}
+
+.marquee-content span {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    text-transform: uppercase;
+    margin-right: 2rem;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.reverse .marquee-content {
+    animation-direction: reverse;
+}
+
+/* Intro Text */
+.intro-text {
+    padding: 8rem 5%;
+    text-align: center;
+}
+
+.intro-text p {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+.highlight {
+    color: var(--color-primary);
+    -webkit-text-stroke: 1px var(--color-text);
+    /* Efecto interesante */
+}
+
+/* Sections Grid */
+.big-links-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-top: 2px solid var(--color-text);
+}
+
+.big-link-item {
+    padding: 4rem 2rem;
+    border-bottom: 2px solid var(--color-text);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s, color 0.3s;
+    cursor: pointer;
+    background: var(--color-bg);
+}
+
+.big-link-item:hover {
+    background: var(--color-text);
+    color: var(--color-bg);
+}
+
+.big-link-item h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 6vw, 5rem);
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.arrow {
+    font-size: 3rem;
+    font-weight: bold;
+    transform: rotate(-45deg);
+    transition: transform 0.3s;
+}
+
+.big-link-item:hover .arrow {
+    transform: rotate(0deg) translateX(10px);
+}
+
+/* Footer */
+footer {
+    padding: 3rem 5%;
+    background-color: #000;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.footer-logo-img {
+    height: 100px;
+    width: auto;
+    object-fit: contain;
+}
+
+.footer-nav-columns {
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.footer-column h4 {
+    color: #fff;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-column a {
+    color: #888;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.footer-column a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.footer-social {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.social-icon {
+    color: #fff;
+    transition: transform 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+    color: var(--color-primary);
+    /* Use olive green on hover */
+}
+
+.footer-copy {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        /* Simplificado */
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .marquee-content span {
+        font-size: 1.5rem;
+    }
+
+    .btn-hero {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+    }
+
+    .arrow {
+        display: none;
+        /* Hide arrow on small screens to save space if needed, or adjust size */
+    }
+}
+/* Store Section */
+.store-section {
+    padding: 6rem 5%;
+    background-color: var(--color-bg);
+}
+
+.section-header {
+    font-family: var(--font-display);
+    font-size: 5rem;
+    text-align: center;
+    margin-bottom: 4rem;
+    color: var(--color-text);
+}
+
+.category-block {
+    margin-bottom: 5rem;
+}
+
+.category-title {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    color: var(--color-primary);
+    border-bottom: 1px solid var(--color-text);
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+    -webkit-text-stroke: 1px var(--color-text);
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 2rem;
+}
+
+.product-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-primary);
+    background: rgba(46, 58, 47, 0.2);
+}
+
+.product-img-placeholder {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.product-card h4 {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    height: 3rem; /* Alineación simple */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-card .price {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+}
+
+.btn-add {
+    background-color: transparent;
+    border: 1px solid var(--color-text);
+    color: var(--color-text);
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.btn-add:hover {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #fff;
+}
+

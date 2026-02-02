@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STO LAT | Nuestras Sucursales</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Lato:wght@300;400;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            padding-top: 80px;
+            background-color: #0c0c0c;
+        }
+
+        .sucursales-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            min-height: 80vh;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .sucursales-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 2rem;
+            height: 600px;
+            /* Fixed height for laptop view */
+        }
+
+        /* Left Side: List */
+        .sucursales-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            overflow-y: auto;
+            padding-right: 1rem;
+        }
+
+        .sucursal-item {
+            background: #1a1a1a;
+            padding: 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #333;
+            text-align: left;
+        }
+
+        .sucursal-item:hover {
+            transform: translateX(10px);
+            background: #252525;
+        }
+
+        .sucursal-item.active {
+            border-color: var(--color-primary);
+            background: #252525;
+            box-shadow: -5px 0 0 var(--color-primary);
+            /* Left accent mark */
+        }
+
+        .sucursal-item h3 {
+            font-family: var(--font-display);
+            color: var(--color-primary);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .sucursal-item p {
+            color: #ccc;
+            font-size: 1.1rem;
+        }
+
+        /* Right Side: Map */
+        .map-wrapper {
+            background: #eee;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 100%;
+            position: relative;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .sucursales-layout {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+
+            .map-wrapper {
+                height: 400px;
+                order: -1;
+                /* Show map on top on mobile? Or bottom? User didn't specify, but top is usually better for context if selected. Let's keep bottom for now as list is selector */
+                order: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar" style="background-color: var(--color-bg); border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/images/logo.png" alt="Sto Lat">
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">INICIO</a></li>
+            <li><a href="store.html">STORE</a></li>
+            <li><a href="menu.html">MENU</a></li>
+            <li><a href="sucursales.html" class="active" style="color: var(--color-primary);">SUCURSALES</a></li>
+        </ul>
+        <div class="menu-toggle">☰</div>
+    </nav>
+
+    <!-- Sucursales Content -->
+    <section class="sucursales-container">
+        <h2 class="section-title">NUESTRAS SUCURSALES</h2>
+
+        <div class="sucursales-layout">
+            <!-- Left: List -->
+            <div class="sucursales-list">
+                <!-- Item 1 -->
+                <div class="sucursal-item active"
+                    onclick="updateMap('https://maps.google.com/maps?q=Belgrano+1053,+San+Salvador+de+Jujuy&t=&z=16&ie=UTF8&iwloc=&output=embed', this)">
+                    <h3>CENTRO</h3>
+                    <p>📍 Belgrano 1053</p>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem; color: #888;">Lunes a Sábado: 9hs - 13hs / 17hs -
+                        21hs</p>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="sucursal-item"
+                    onclick="updateMap('https://maps.google.com/maps?q=Sarmiento+114,+San+Salvador+de+Jujuy&t=&z=16&ie=UTF8&iwloc=&output=embed', this)">
+                    <h3>CENTRO (Anexo)</h3>
+                    <p>📍 Sarmiento 114</p>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem; color: #888;">Lunes a Sábado: 9hs - 13hs / 17hs -
+                        21hs</p>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="sucursal-item"
+                    onclick="updateMap('https://maps.google.com/maps?q=Suipacha+392,+San+Salvador+de+Jujuy&t=&z=16&ie=UTF8&iwloc=&output=embed', this)">
+                    <h3>23 DE AGOSTO</h3>
+                    <p>📍 Suipacha 392</p>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem; color: #888;">Nuestra casa central</p>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="sucursal-item"
+                    onclick="updateMap('https://maps.google.com/maps?q=Dr.+Arturo+Illia+372,+San+Salvador+de+Jujuy&t=&z=16&ie=UTF8&iwloc=&output=embed', this)">
+                    <h3>LOS PERALES</h3>
+                    <p>📍 Dr. Arturo Illia 372</p>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem; color: #888;">Zona residencial</p>
+                </div>
+            </div>
+
+            <!-- Right: Map -->
+            <div class="map-wrapper">
+                <iframe id="main-map"
+                    src="https://maps.google.com/maps?q=Belgrano+1053,+San+Salvador+de+Jujuy&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                    width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-logo-section">
+                    <img src="assets/images/logo.png" alt="Sto Lat" class="footer-logo-img">
+                </div>
+                <!-- ... Social Icons as in main page ... -->
+                <div class="footer-social">
+                    <a href="https://wa.me/5493884759474" container="_blank" class="social-icon whatsapp">
+                        <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-copy">
+                <p>Created by RenderByte | All Right Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateMap(url, element) {
+            // Update Iframe
+            document.getElementById('main-map').src = url;
+
+            // Remove active class from all items
+            const items = document.querySelectorAll('.sucursal-item');
+            items.forEach(item => item.classList.remove('active'));
+
+            // Add active class to clicked item
+            element.classList.add('active');
+        }
+    </script>
+</body>
+
+</html>
