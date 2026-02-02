@@ -313,13 +313,41 @@ footer {
 
 /* Mobile */
 @media (max-width: 768px) {
+    .navbar {
+        padding: 1rem 5%;
+        background-color: var(--color-bg);
+        /* Always dark on mobile for visibility */
+    }
+
     .nav-links {
-        display: none;
-        /* Simplificado */
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 70px;
+        /* Below navbar */
+        left: 0;
+        width: 100%;
+        background-color: var(--color-bg);
+        padding: 2rem 0;
+        transform: translateY(-150%);
+        transition: transform 0.4s ease;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 999;
+        text-align: center;
+    }
+
+    .nav-links.active {
+        transform: translateY(0);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
     }
 
     .menu-toggle {
         display: block;
+        color: #fff;
+    }
+
+    .hero-title {
+        font-size: clamp(2.5rem, 8vw, 5rem);
     }
 
     .marquee-content span {
@@ -333,9 +361,32 @@ footer {
 
     .arrow {
         display: none;
-        /* Hide arrow on small screens to save space if needed, or adjust size */
+    }
+
+    .intro-text {
+        padding: 4rem 5%;
+    }
+
+    .intro-text p {
+        font-size: 1.8rem;
     }
 }
+
+@media (max-width: 480px) {
+    .big-link-item h2 {
+        font-size: 1.8rem;
+    }
+
+    .footer-nav-columns {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+    }
+}
+
 /* Store Section */
 .store-section {
     padding: 6rem 5%;
@@ -393,7 +444,8 @@ footer {
     font-family: var(--font-body);
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
-    height: 3rem; /* Alineación simple */
+    height: 3rem;
+    /* AlineaciÃ³n simple */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -421,4 +473,3 @@ footer {
     border-color: var(--color-primary);
     color: #fff;
 }
-

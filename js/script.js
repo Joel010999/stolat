@@ -19,6 +19,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Mobile Menu Toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        const links = navLinks.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    }
+
     // Marquee Cloning for infinite loop (simple JS fallback/enhancement)
     const marquees = document.querySelectorAll('.marquee-content');
     marquees.forEach(marquee => {
