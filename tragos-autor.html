@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STO LAT | Tragos de Autor</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Lato:wght@300;400;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.png" type="image/png">
+    
+    <style>
+        body {
+            padding-top: 80px;
+            background-color: #0c0c0c;
+        }
+
+        .menu-section {
+            padding: 4rem 1rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            min-height: 50vh;
+        }
+
+        .menu-category-title {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            color: var(--color-primary);
+            margin: 1rem 0 2rem;
+            text-align: center;
+            text-transform: uppercase;
+            border-bottom: 2px solid #333;
+            padding-bottom: 1rem;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-item {
+            background: #1a1a1a;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #333;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-primary);
+            box-shadow: 0 5px 15px rgba(143, 162, 145, 0.1);
+        }
+
+        .menu-item img {
+            width: calc(100% + 3rem);
+            height: 250px;
+            object-fit: cover;
+            margin: -1.5rem -1.5rem 1.5rem -1.5rem;
+            border-radius: 7px 7px 0 0;
+            display: block;
+        }
+
+        .menu-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-item-name {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            color: var(--color-white);
+        }
+
+        .menu-item-price {
+            font-family: var(--font-body);
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: var(--color-primary);
+        }
+
+        .menu-item-desc {
+            color: #aaa;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        .menu-hero {
+            background-image: url('tragos%20de%20autor.png');
+            background-size: cover;
+            background-position: center;
+            height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-top: -80px;
+            /* Counteract body padding for hero feel */
+        }
+
+        .menu-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .menu-hero h1 {
+            position: relative;
+            z-index: 1;
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: var(--color-white);
+            text-align: center;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar" style="background-color: var(--color-bg); border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <div class="logo">
+            <a href="index.html">
+                <img src="logo%20stolat.png" alt="Sto Lat">
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">INICIO</a></li>
+            <li><a href="store.html">STORE</a></li>
+            <li><a href="menu.html">MENU</a></li>
+            <li><a href="sucursales.html">SUCURSALES</a></li>
+        </ul>
+        <div class="menu-toggle">☰</div>
+    </nav>
+
+    <!-- Menu Hero -->
+    <header class="menu-hero">
+        <h1>TRAGOS DE AUTOR</h1>
+    </header>
+
+    <!-- Menu Content -->
+    <div class="menu-section">
+        
+        <h2 class="menu-category-title">Nuestra Coctelería</h2>
+        <div class="menu-grid">
+            <!-- Cocktail 1 -->
+            <div class="menu-item">
+                <img src="assets/images/gin_paff.png" alt="Gin Paff">
+                <div class="menu-item-content">
+                    <div class="menu-item-header">
+                        <h3 class="menu-item-name">GIN PAFF (El furor en redes)</h3>
+                    </div>
+                    <p class="menu-item-desc">Gin, 4 caramelos Flin Paff y gaseosa de lima.</p>
+                </div>
+            </div>
+
+            <!-- Cocktail 2 -->
+            <div class="menu-item">
+                <img src="assets/images/lemon_ice_spritz.png" alt="Lemon Ice Spritz">
+                <div class="menu-item-content">
+                    <div class="menu-item-header">
+                        <h3 class="menu-item-name">LEMON ICE SPRITZ</h3>
+                    </div>
+                    <p class="menu-item-desc">120ml de Champagne o Espumante, 1 paleta de helado de frutilla o limón y arándanos frescos.</p>
+                </div>
+            </div>
+
+            <!-- Cocktail 3 -->
+            <div class="menu-item">
+                <img src="assets/images/gomi_ron_blue.png" alt="Gomi-Ron Blue">
+                <div class="menu-item-content">
+                    <div class="menu-item-header">
+                        <h3 class="menu-item-name">GOMI-RON BLUE</h3>
+                    </div>
+                    <p class="menu-item-desc">Ron de coco, Blue Curaçao, jugo de piña y gomitas de gusanitos.</p>
+                </div>
+            </div>
+
+            <!-- Cocktail 4 -->
+            <div class="menu-item">
+                <img src="assets/images/cotton_candy_fizz.png" alt="Cotton Candy Fizz">
+                <div class="menu-item-content">
+                    <div class="menu-item-header">
+                        <h3 class="menu-item-name">COTTON CANDY FIZZ</h3>
+                    </div>
+                    <p class="menu-item-desc">Vodka de vainilla, licor de frutilla, soda para completar y un copo grande de algodón de azúcar.</p>
+                </div>
+            </div>
+
+            <!-- Cocktail 5 -->
+            <div class="menu-item">
+                <img src="assets/images/oreo_irish_frappe.png" alt="Oreo Irish Frappé">
+                <div class="menu-item-content">
+                    <div class="menu-item-header">
+                        <h3 class="menu-item-name">OREO IRISH FRAPPÉ</h3>
+                    </div>
+                    <p class="menu-item-desc">Baileys, 2 bochas de helado de crema americana, galletitas Oreo y salsa de chocolate.</p>
+                </div>
+            </div>
+
+            <!-- Cocktail 6 -->
+            <div class="menu-item">
+                <img src="assets/images/skittles_vodka_punch.png" alt="Skittles Vodka Punch">
+                <div class="menu-item-content">
+                    <div class="menu-item-header">
+                        <h3 class="menu-item-name">SKITTLES VODKA PUNCH</h3>
+                    </div>
+                    <p class="menu-item-desc">Vodka infusionado con Rocklets, jugo de lima, rodaja de naranja y un puñado de Rocklets.</p>
+                </div>
+            </div>
+
+            <!-- Cocktail 7 -->
+            <div class="menu-item">
+                <img src="assets/images/lollipop_martini.png" alt="Lollipop Martini">
+                <div class="menu-item-content">
+                    <div class="menu-item-header">
+                        <h3 class="menu-item-name">LOLLIPOP MARTINI</h3>
+                    </div>
+                    <p class="menu-item-desc">Vodka de cereza, granadina, jugo de arándano y 1 chupetín tipo paleta.</p>
+                </div>
+            </div>
+
+            <!-- Cocktail 8 -->
+            <div class="menu-item">
+                <img src="assets/images/marshmallow_magic.png" alt="Marshmallow Magic">
+                <div class="menu-item-content">
+                    <div class="menu-item-header">
+                        <h3 class="menu-item-name">MARSHMALLOW MAGIC</h3>
+                    </div>
+                    <p class="menu-item-desc">Gin, tónica, rodaja de pomelo rosado y malvaviscos.</p>
+                </div>
+            </div>
+
+            <!-- Cocktail 9 -->
+            <div class="menu-item">
+                <img src="assets/images/rainbow_candy_layer.png" alt="Rainbow Candy Layer">
+                <div class="menu-item-content">
+                    <div class="menu-item-header">
+                        <h3 class="menu-item-name">RAINBOW CANDY LAYER</h3>
+                    </div>
+                    <p class="menu-item-desc">Granadina, jugo de naranja, Vodka mezclado con Blue Curaçao y gomitas de ositos.</p>
+                </div>
+            </div>
+
+            <!-- Cocktail 10 -->
+            <div class="menu-item">
+                <img src="assets/images/smirnoff_berry_crush.png" alt="Smirnoff Berry Crush">
+                <div class="menu-item-content">
+                    <div class="menu-item-header">
+                        <h3 class="menu-item-name">SMIRNOFF BERRY CRUSH</h3>
+                    </div>
+                    <p class="menu-item-desc">1 Smirnoff Ice, frutos rojos congelados (moras, frambuesas) y una rama de menta fresca.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-logo-section">
+                    <img src="logo%20stolat.png" alt="Sto Lat" class="footer-logo-img">
+                </div>
+                <div class="footer-nav-columns">
+                    <div class="footer-column">
+                        <h4>Nosotros</h4>
+                        <ul>
+                            <li><a href="index.html">Volver a Inicio</a></li>
+                            <li><a href="store.html">Nuestra Bodega</a></li>
+                            <li><a href="menu.html">Menú Completo</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-social">
+                    <a href="https://wa.me/5493884759474" target="_blank" class="social-icon whatsapp">
+                        <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/tiendastolat/" target="_blank" class="social-icon instagram">
+                        <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-copy">
+                <p>Created by RenderByte | All Right Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
