@@ -1,7 +1,7 @@
 :root {
     --color-bg: #080808;
-    --color-primary: #00FF87;
-    /* Vibrant Neon Green */
+    --color-primary: #8FA291;
+    /* Verde Oliva del Logo */
     --color-text: #FFFFFF;
     /* Crisp White */
     --color-accent: #FF007F;
@@ -189,8 +189,6 @@ a {
 
 .highlight {
     color: var(--color-primary);
-    -webkit-text-stroke: 1px var(--color-text);
-    /* Efecto interesante */
 }
 
 /* Sections Grid */
